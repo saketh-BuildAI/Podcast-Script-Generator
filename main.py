@@ -24,7 +24,7 @@ templates = Jinja2Templates(directory="templates")
 app = FastAPI()
 links_list = []
 headings = []
-api_key = "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"
+api_key = ""
 openai.api_key = api_key
 model = "gpt-3.5-turbo-instruct"
 max_tokens = 500
