@@ -1,0 +1,94 @@
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+<!--<head>-->
+<!--    <title>Podcast Script Extractor</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <h1>Podcast Script Extractor</h1>-->
+<!--    <form action="/get_podcastscript" method="post">-->
+<!--        <label for="url">Podcast URL:</label>-->
+<!--        <input type="text" name="url" required><br>-->
+
+<!--        <label for="index">Index:</label>-->
+<!--        <input type="text" name="index" required><br>-->
+
+<!--        <button type="submit">Get Podcast Script</button>-->
+<!--    </form>-->
+
+
+<!--      <form action="/get_content" method="post">-->
+<!--        <label for="urla">Content URL:</label>-->
+<!--        <input type="text" name="urla" required><br>-->
+
+<!--        <label for="indexa">Index:</label>-->
+<!--        <input type="number" name="indexa" required><br>-->
+
+<!--        <button type="submit">Get Content</button>-->
+<!--    </form>-->
+
+
+
+
+
+
+
+
+<!--</body>-->
+<!--</html>-->
+<!DOCTYPE html>
+<html>
+<head>
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+    <title>News</title>
+   <link rel="stylesheet" href="/static/style.css"/>
+
+</head>
+<body>
+
+
+<div class="container">
+
+<div>
+    <h1>Podcast-Script Generator</h1>
+</div>
+<!--    <h1>LATEST-NEWS</h1>-->
+    </br>
+    <form action="/process_form" method="post">
+        <label for="url">URL:</label>
+        <input type="text" name="url" required><br>
+             <label for="count">Number of Articles:</label>
+        <input type="text" name="count" required><br>
+
+        <label for="index">Select Article:</label>
+        <input type="text" name="index" required><br>
+
+
+
+        <select>
+                     <option></option>
+                     <option value="indian" selected>Select News-Paper</option>
+                     <option>indian express</option>
+                     <option>the hindu</option>
+                  </select>
+
+        <button type="submit" name="action" value="get_podcastscript">Generate Podcast Script</button>
+        <button type="submit" name="action" value="get_content">Get Article Content</button>
+        <div>
+            <p></p>
+        </div>
+        <button type="submit" name="action" id="downloadButton" value="generate_excel">Download Excel</button>
+
+
+
+<!--         <script>-->
+<!--        document.getElementById('downloadButton').addEventListener('click', function(event) {-->
+<!--            event.preventDefault();-->
+<!--             });-->
+<!--         </script>-->
+
+
+    </form>
+    </div>
+</body>
+</html>
