@@ -6,14 +6,14 @@ from fastapi import FastAPI, Request, Form
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
-
-# from gensim.summarization.summarizer import summarize
+from dotenv import load_dotenv
+load_dotenv()
 templates = Jinja2Templates(directory="templates")
 
 app = FastAPI()
 links_list = []
 headings = []
-api_key = ""
+api_key = os.getenv('OPENAI_API_KEY')
 
 openai.api_key = api_key
 model = "gpt-3.5-turbo-16k"
