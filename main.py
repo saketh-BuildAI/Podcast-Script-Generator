@@ -1,5 +1,6 @@
 import requests
 import openai
+
 from bs4 import BeautifulSoup
 import pandas as pd
 from fastapi import FastAPI, Request, Form
@@ -7,6 +8,8 @@ from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from dotenv import load_dotenv
+import os
+
 load_dotenv()
 templates = Jinja2Templates(directory="templates")
 
@@ -16,9 +19,6 @@ headings = []
 api_key = os.getenv('OPENAI_API_KEY')
 
 openai.api_key = api_key
-model = "gpt-3.5-turbo-16k"
-max_tokens = 500
-
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 
@@ -139,14 +139,20 @@ def podcast(index: int):
         summarized_text = cleaned_content
 
         prompt = f"generate a best podcast script for the following content  {summarized_text}"
+        response = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo-16k",
+            messages=[
+                # {"role": "system", "content": "This is the year 2099.I am a cyberpunk AI. Ask me anything."},
+                {'role': 'user', 'content': prompt}],
 
-        response = openai.Completion.create(
-            engine=model,
-            prompt=prompt,
-            max_tokens=max_tokens
+            n=1,
+            temperature=0.5,
+            top_p=1,
+            frequency_penalty=0.0,
+            presence_penalty=0.6,
         )
-
-        generated_content = response['choices'][0]['text']
+        # Get the response text from the API response
+        generated_content = response['choices'][0]['message']['content']
         generated_content = generated_content.replace('\n', ' ')
         generated_content = generated_content.replace('â', ' ')
         generated_content = remove_control_characters(generated_content)
@@ -188,13 +194,20 @@ async def process_form(request: Request, url: str = Form(...), index: int = Form
                 summarized_text = cleaned_content
                 prompt = f"generate a best podcast script for the following content  {summarized_text}"
 
-                response = openai.Completion.create(
-                    engine=model,
-                    prompt=prompt,
-                    max_tokens=max_tokens
+                response = openai.ChatCompletion.create(
+                    model="gpt-3.5-turbo-16k",
+                    messages=[
+
+                        {'role': 'user', 'content': prompt}],
+
+                    n=1,
+                    temperature=0.5,
+                    top_p=1,
+                    frequency_penalty=0.0,
+                    presence_penalty=0.6,
                 )
 
-                generated_content = response['choices'][0]['text']
+                generated_content = response['choices'][0]['message']['content']
                 generated_content = generated_content.replace('\n', ' ')
                 generated_content = generated_content.replace('â', ' ')
                 generated_content = remove_control_characters(generated_content)
