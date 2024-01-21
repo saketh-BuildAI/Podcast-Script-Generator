@@ -1,25 +1,18 @@
-
-
 <!DOCTYPE html>
 <html>
 <head>
-<!--    <meta charset="UTF-8">-->
-<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+
     <title>News</title>
    <link rel="stylesheet" href="/static/style.css"/>
 
 </head>
-<body>
+<body style="background-image: url('static/bg.jpg');">
+
 
 
 <div class="container">
-
-<div>
-    <h1>Podcast-Script Generator</h1>
-</div>
-<!--    <h1>LATEST-NEWS</h1>-->
-    </br>
-    <form action="/process_form" method="post">
+    <form action="/process_form" method="post" >
+        <h1 style="background-color: #FFFFFF; text-align: center;">Podcast-Script Generator</h1>
         <label for="url">URL:</label>
         <input type="text" name="url" required><br>
              <label for="count">Number of Articles:</label>
@@ -39,9 +32,9 @@
 
         <button type="submit" name="action" value="get_podcastscript">Generate Podcast Script</button>
         <button type="submit" name="action" value="get_content">Get Article Content</button>
-        <div>
+
             <p></p>
-        </div>
+
         <button type="submit" name="action" id="downloadButton" value="generate_excel">Download Excel</button>
 
 
@@ -49,6 +42,7 @@
 
 
     </form>
+
     </div>
 </body>
 </html>
