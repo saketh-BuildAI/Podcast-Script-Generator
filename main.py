@@ -20,6 +20,7 @@ api_key = os.getenv('OPENAI_API_KEY')
 
 openai.api_key = api_key
 app.mount("/static", StaticFiles(directory="static"), name="static")
+model = "gpt-3.5-turbo-16k"
 
 
 def get_headings_and_links(url: str, count: int):
@@ -140,7 +141,7 @@ def podcast(index: int):
 
         prompt = f"generate a best podcast script for the following content  {summarized_text}"
         response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo-16k",
+            model=model,
             messages=[
                 # {"role": "system", "content": "This is the year 2099.I am a cyberpunk AI. Ask me anything."},
                 {'role': 'user', 'content': prompt}],
@@ -195,7 +196,7 @@ async def process_form(request: Request, url: str = Form(...), index: int = Form
                 prompt = f"generate a best podcast script for the following content  {summarized_text}"
 
                 response = openai.ChatCompletion.create(
-                    model="gpt-3.5-turbo-16k",
+                    model=model,
                     messages=[
 
                         {'role': 'user', 'content': prompt}],
